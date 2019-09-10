@@ -1,6 +1,6 @@
 # Centralise Heating System Management
 
-This is an MVP for reading thermostat and returning max, avg and min readings for each thermostat.
+This is an MVP for reading thermostat and returning max, avg and min readings for thermostats.
 
 
 ## System Design
@@ -44,17 +44,17 @@ $ rails s
 
 ## API Docs
 
-Inorder to authenticate the api we add thermostat `household_token` request header.
+Inorder to authenticate the api we add thermostat `household_token` to request header.
 
 1) **Add Reading**
 
 ```
-  Endpoint: 'http://localhost:3000/v1/readings'
+  Endpoint: http://localhost:3000/v1/readings
   Method: POST
   Authentication: true
   Header
   {
-    Authorization: 'ddasdasdaswewe'
+    Authorization: ':household_token'
   }
 
 
@@ -83,12 +83,12 @@ Inorder to authenticate the api we add thermostat `household_token` request head
 2) **Get Reading**
 
 ```
-  Endpoint: 'http://localhost:3000/v1/readings/1232456'
+  Endpoint: http://localhost:3000/v1/readings/:tracking_number
   Method: GET
   Authentication: true
   Header
   {
-    Authorization: 'ddasdasdaswewe'
+    Authorization: ':household_token'
   }
 
   Request Params
@@ -107,12 +107,12 @@ Inorder to authenticate the api we add thermostat `household_token` request head
 3) **Get Stats of Thermostat**
 
 ```
-  Endpoint: 'http://localhost:3000/v1/readings'
+  Endpoint: http://localhost:3000/v1/readings/stats
   Method: GET
   Authentication: true
   Header
   {
-    Authorization: 'ddasdasdaswewe'
+    Authorization: ':household_token'
   }
 
   Request Params
@@ -131,6 +131,15 @@ Inorder to authenticate the api we add thermostat `household_token` request head
     "avg_temperature": 13.34,
     "avg_battery_charge": 31.25
   }
+```
+
+## Test
+
+For testing run,
+
+
+```
+$ rspec ./spec/
 ```
 
 
